@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import StreamCreate from '../components/streams/StreamCreate';
 import StreamEdit from '../components/streams/StreamEdit';
 import StreamList from '../components/streams/StreamList';
 import StreamShow from '../components/streams/StreamShow';
 import StreamDelete from '../components/streams/StreamDelete';
 import Header from './Header';
+import history from '../history';
 
 // BAD Practice!!
 // Do not use anchor tag with react-router
@@ -66,16 +67,16 @@ import Header from './Header';
 const App = () => {
     return (
         <div className="ui container">
-            <BrowserRouter>
+            <Router history={history}>
                 <Header />
                 <div>
                     <Route path="/" exact component={StreamList} />
                     <Route path="/stream/new" exact component={StreamCreate} />
-                    <Route path="/stream/edit" exact component={StreamEdit} />
+                    <Route path="/stream/edit/:id" exact component={StreamEdit} />
                     <Route path="/stream/delete" exact component={StreamDelete} />
                     <Route path="/stream/show" exact component={StreamShow} />
                 </div>
-            </BrowserRouter>
+            </Router>
         </div>
     );
 }
