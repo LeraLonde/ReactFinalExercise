@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import StreamCreate from '../components/streams/StreamCreate';
 import StreamEdit from '../components/streams/StreamEdit';
 import StreamList from '../components/streams/StreamList';
@@ -64,17 +64,21 @@ import history from '../history';
 // Server will not look at anything after the '#'.
 // Application will look at anything that is after the '#' and determine which component to load.
 // if you are doing a deployment to github pages (e.g.)
+
+// Switch will help u to determine only one component to appear instead of multiple.
 const App = () => {
     return (
         <div className="ui container">
             <Router history={history}>
-                <Header />
                 <div>
-                    <Route path="/" exact component={StreamList} />
-                    <Route path="/stream/new" exact component={StreamCreate} />
-                    <Route path="/stream/edit/:id" exact component={StreamEdit} />
-                    <Route path="/stream/delete" exact component={StreamDelete} />
-                    <Route path="/stream/show" exact component={StreamShow} />
+                    <Header />
+                    <Switch>
+                        <Route path="/" exact component={StreamList} />
+                        <Route path="/stream/new" exact component={StreamCreate} />
+                        <Route path="/stream/edit/:id" exact component={StreamEdit} />
+                        <Route path="/stream/delete" exact component={StreamDelete} />
+                        <Route path="/stream/:id" exact component={StreamShow} />
+                    </Switch>
                 </div>
             </Router>
         </div>
