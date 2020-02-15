@@ -11,8 +11,8 @@ class Button extends React.Component {
     // consumer will be used whenever we need to consume information from multiple context
     // you always pass in a function for a consumer.
 
-    renderSubmit = (value) => {
-        return value === 'english' ? 'Submit' : 'Voorleggen'
+    renderSubmit = (language) => {
+        return language === 'english' ? 'Submit' : 'Voorleggen'
     }
 
     render() {
@@ -21,7 +21,7 @@ class Button extends React.Component {
                 {(color) =>
                     <button className={`ui button ${color}`}>
                         <LanguageContext.Consumer>
-                            {(value) => this.renderSubmit(value)}
+                            {({ language }) => this.renderSubmit(language)}
                         </LanguageContext.Consumer>
                     </button>
                 }
